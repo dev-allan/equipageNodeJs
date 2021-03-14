@@ -1,3 +1,4 @@
+const { Console } = require("console");
 const http = require("http");
 const app = require("./app")
 
@@ -12,3 +13,5 @@ app.use((req, res, next) => {
   });
 
 server.listen(process.env.PORT || 3000);
+
+console.log("Serveur fonctionnant sur le port 3000");

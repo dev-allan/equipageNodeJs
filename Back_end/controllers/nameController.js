@@ -19,3 +19,15 @@ exports.addName =  (req, res, next) => {
         });
     res.send(name);
 };
+
+exports.deleteName = (req, res, next) => {
+    var id = req.params.id;
+    var data = [id];
+    mysqlConnection.query("DELETE FROM argonaute WHERE id =?", data, function(err, result){
+        if(err) throw err;
+        console.log("1 row delete");
+    });
+    res.send("Suppression effectuée")
+    //res.send("Nom supprimé");
+}
+
