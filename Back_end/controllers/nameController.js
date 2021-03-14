@@ -20,14 +20,26 @@ exports.addName =  (req, res, next) => {
     res.send(name);
 };
 
-exports.deleteName = (req, res, next) => {
-    var id = req.params.id;
-    var data = [id];
-    mysqlConnection.query("DELETE FROM argonaute WHERE id =?", data, function(err, result){
-        if(err) throw err;
-        console.log("1 row delete");
-    });
-    res.send("Suppression effectuée")
-    //res.send("Nom supprimé");
-}
+// exports.deleteName = (req, res, next) => {
+//     var Id = req.params.id;
+//     mysqlConnection.query("DELETE FROM argonaute WHERE id=(?)", Id.toString(), function(err, result){
+//         if(err) throw err;
+//         console.log("1 row delete");
+//     });
+//     res.send("Suppression effectuée")
+//     next();
+// }
 
+
+////////////////////////////////
+
+exports.deleteName = (req, res, next) => {
+    var id = req.params.id
+    var data = [id]
+    mysqlConnection.query('DELETE FROM argonaute WHERE id=?', data, (err,rows, fields) => {
+        if (!err)
+            res.send(rows);
+        else
+            console.log(err);
+    }
+)};

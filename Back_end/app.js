@@ -1,7 +1,6 @@
 /* Mise au clair de l'architecture MVC */
 
 const express = require('express');
-const bodyParser = require('body-parser');
 const nameRoute = require('./routes/nameRoute.js');
 
 var app = express();
@@ -13,7 +12,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
 
 app.use('/name', nameRoute);
